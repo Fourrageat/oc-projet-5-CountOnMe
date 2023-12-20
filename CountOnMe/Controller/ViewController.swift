@@ -82,11 +82,11 @@ private extension ViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
-    
+
     private func showAlertOperators() {
         showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
     }
-    
+
     private func addToTextView(currentOperator: String) {
         if canAddOperator {
             textView.text.append(currentOperator)
