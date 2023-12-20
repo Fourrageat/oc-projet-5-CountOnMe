@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Calculator {
+final class Calculator {
     func calculateResult(from elements: [String]) -> String? {
         var operationsToReduce = elements
 

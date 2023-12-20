@@ -8,32 +8,32 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
 
-    var elements: [String] {
+    private var elements: [String] {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
 
     // Error check computed variables
-    var expressionIsCorrect: Bool {
+    private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
     }
 
-    var expressionHaveEnoughElement: Bool {
+    private var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
 
-    var canAddOperator: Bool {
+    private var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-"
     }
 
-    var expressionHaveResult: Bool {
+    private var expressionHaveResult: Bool {
         return textView.text.firstIndex(of: "=") != nil
     }
 
-    var calculator = Calculator()
+    private let calculator = Calculator()
 
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
