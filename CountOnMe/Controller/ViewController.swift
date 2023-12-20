@@ -8,53 +8,46 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
-    
-    var elements: [String] {
+
+    private var elements: [String] {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
-    
+
     // Error check computed variables
-    var expressionIsCorrect: Bool {
+    private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
     }
-    
-    var expressionHaveEnoughElement: Bool {
+
+    private var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
-    
-    var canAddOperator: Bool {
+
+    private var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-"
     }
-    
-    var expressionHaveResult: Bool {
+
+    private var expressionHaveResult: Bool {
         return textView.text.firstIndex(of: "=") != nil
     }
-    
-    // View Life cycles
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-    var calculator = Calculator()
-    
-    
+
+    private let calculator = Calculator()
+
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
         }
-        
+
         if expressionHaveResult {
             textView.text = ""
         }
-        
+
         textView.text.append(numberText)
     }
-    
+
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
         if canAddOperator {
             textView.text.append(" + ")
@@ -62,7 +55,7 @@ class ViewController: UIViewController {
             showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
         }
     }
-    
+
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
         if canAddOperator {
             textView.text.append(" - ")
@@ -77,13 +70,13 @@ class ViewController: UIViewController {
             showAlert(title: "Zéro!", message: "Entrez une expression correcte !")
             return
         }
-        
+
         guard expressionHaveEnoughElement else {
             // Handle not enough elements
             showAlert(title: "Zéro!", message: "Démarrez un nouveau calcul !")
             return
         }
-        
+
         if let result = calculator.calculateResult(from: elements) {
             textView.text.append(" = \(result)")
         } else {
@@ -100,4 +93,3 @@ private extension ViewController {
         present(alertVC, animated: true, completion: nil)
     }
 }
-
