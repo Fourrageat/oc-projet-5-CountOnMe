@@ -47,6 +47,8 @@ final class ViewController: UIViewController {
 
         textView.text.append(numberText)
     }
+    
+    
 
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
         if canAddOperator {
@@ -65,21 +67,19 @@ final class ViewController: UIViewController {
     }
 
     @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
-        print("x")
-//        if canAddOperator {
-//            textView.text.append(" x ")
-//        } else {
-//            showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
-//        }
+        if canAddOperator {
+            textView.text.append(" x ")
+        } else {
+            showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
+        }
     }
 
     @IBAction func tappedDivisionButton(_ sender: UIButton) {
-        print("/")
-//        if canAddOperator {
-//            textView.text.append(" / ")
-//        } else {
-//            showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
-//        }
+        if canAddOperator {
+            textView.text.append(" / ")
+        } else {
+            showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
+        }
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
