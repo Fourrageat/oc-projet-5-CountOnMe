@@ -64,6 +64,24 @@ final class ViewController: UIViewController {
         }
     }
 
+    @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
+        print("x")
+//        if canAddOperator {
+//            textView.text.append(" x ")
+//        } else {
+//            showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
+//        }
+    }
+
+    @IBAction func tappedDivisionButton(_ sender: UIButton) {
+        print("/")
+//        if canAddOperator {
+//            textView.text.append(" / ")
+//        } else {
+//            showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
+//        }
+    }
+
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard expressionIsCorrect else {
             // Handle incorrect expression
