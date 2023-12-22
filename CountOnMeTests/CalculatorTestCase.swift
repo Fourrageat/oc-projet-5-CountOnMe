@@ -11,19 +11,56 @@ import XCTest
 
 final class CalculatorTestCase: XCTestCase {
 
-    var calculator = Calculator()
+    var calculator: Calculator!
+
+    override func setUp() {
+        super.setUp()
+
+        calculator = Calculator()
+    }
 
     func testAddition() {
-        // Given
-        let inputExpression = ["5", "+", "1"]
-        let expectedSum = "6"
+        let givenExpression = ["5", "+", "1"]
+        let expected = "6"
 
-        // When
-        guard let result = calculator.calculateResult(from: inputExpression) else {
-            XCTFail("Result is nil")
-            return
-        }
+        let received = calculator.calculateResult(from: givenExpression)
 
-        XCTAssertEqual(result, expectedSum, "Addition result is incorrect")
+        XCTAssertEqual(received, expected)
+    }
+
+    func testSoustraction() {
+        let givenExpression = ["5", "-", "1"]
+        let expected = "4"
+
+        let received = calculator.calculateResult(from: givenExpression)
+
+        XCTAssertEqual(received, expected)
+    }
+
+    func testMultiplication() {
+        let givenExpression = ["5", "x", "2"]
+        let expected = "10"
+
+        let received = calculator.calculateResult(from: givenExpression)
+
+        XCTAssertEqual(received, expected)
+    }
+
+    func testDivision() {
+        let givenExpression = ["10", "/", "2"]
+        let expected = "5"
+
+        let received = calculator.calculateResult(from: givenExpression)
+
+        XCTAssertEqual(received, expected)
+    }
+
+    func testOperatorPriority() {
+        let givenExpression = ["3", "x", "2", "+", "6", "/", "3"]
+        let expected = "8"
+
+        let received = calculator.calculateResult(from: givenExpression)
+
+        XCTAssertEqual(received, expected)
     }
 }

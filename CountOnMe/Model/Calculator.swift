@@ -9,10 +9,17 @@
 import Foundation
 
 final class Calculator {
+
+    private let operatorsOrderPriority = [["x", "/"], ["+", "-"]]
+
+    private enum CalculationError: Error {
+        case invalidOperator
+    }
+
     func calculateResult(from elements: [String]) -> String? {
         var operationsToReduce = elements
 
-        for operators in [["x", "/"], ["+", "-"]] {
+        for operators in operatorsOrderPriority {
             handleOperations(of: operators, in: &operationsToReduce)
         }
 
@@ -43,13 +50,11 @@ final class Calculator {
     }
 
     private func performCalculation(left: Int, usedOperator: String, right: Int) -> Int {
-        print(left, usedOperator, right)
         switch usedOperator {
         case "+": return left + right
         case "-": return left - right
         case "x": return left * right
-        case "/": return left / right
-        default: fatalError("Unknown operator !")
+        default: return left / right
         }
     }
 }
