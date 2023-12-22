@@ -11,8 +11,19 @@ import XCTest
 
 final class CalculatorTestCase: XCTestCase {
 
-    func testExample() {
-        XCTAssert(true)
-    }
+    var calculator = Calculator()
 
+    func testAddition() {
+        // Given
+        let inputExpression = ["5", "+", "1"]
+        let expectedSum = "6"
+
+        // When
+        guard let result = calculator.calculateResult(from: inputExpression) else {
+            XCTFail("Result is nil")
+            return
+        }
+
+        XCTAssertEqual(result, expectedSum, "Addition result is incorrect")
+    }
 }
