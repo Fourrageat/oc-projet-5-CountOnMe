@@ -23,7 +23,7 @@ final class Calculator {
             handleOperations(of: operators, in: &operationsToReduce)
         }
 
-        if operationsToReduce.contains("Error") {
+        if operationsToReduce.contains("Error") || operationsToReduce.count > 1 {
             return "Error"
         }
 
