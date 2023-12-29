@@ -11,15 +11,8 @@ import XCTest
 
 final class CalculatorTestCase: XCTestCase {
 
-    var calculator: Calculator!
-
-    override func setUp() {
-        super.setUp()
-
-        calculator = Calculator()
-    }
-
     private func assertion(givenExpression: [String], expected: String) {
+        let calculator = Calculator()
 
         let received = calculator.calculateResult(from: givenExpression)
 
