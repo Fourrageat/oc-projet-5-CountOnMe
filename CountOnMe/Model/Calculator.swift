@@ -23,6 +23,10 @@ final class Calculator {
             handleOperations(of: operators, in: &operationsToReduce)
         }
 
+        if operationsToReduce.contains("Error") {
+            return "Error"
+        }
+
         return operationsToReduce.first
     }
 
@@ -34,7 +38,7 @@ final class Calculator {
                    let right = Int(operations[index + 1]) {
                     let result = performCalculation(left: left, usedOperator: operations[index], right: right)
 
-                    operations[index - 1] = "\(result)"
+                    operations[index - 1] = result
 
                     for _ in 1...2 {
                         operations.remove(at: index)
@@ -49,12 +53,18 @@ final class Calculator {
         }
     }
 
-    private func performCalculation(left: Int, usedOperator: String, right: Int) -> Int {
+    private func performCalculation(left: Int, usedOperator: String, right: Int) -> String {
         switch usedOperator {
-        case "+": return left + right
-        case "-": return left - right
-        case "x": return left * right
-        default: return left / right
+        case "+": return "\(left + right)"
+        case "-": return "\(left - right)"
+        case "x": return "\(left * right)"
+        case "/":
+            guard right != 0 else {
+                return "Error"
+            }
+            return "\(left / right)"
+        default:
+            return "Error"
         }
     }
 }
