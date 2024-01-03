@@ -13,7 +13,8 @@ import Foundation
 
  ## Overview
 
- The `Calculator` class is a Swift model responsible for performing arithmetic calculations based on user input in the CountOneMe calculator app.
+ The `Calculator` class is a Swift model responsible for performing arithmetic calculations based on
+ user input in the CountOneMe calculator app.
 
  ## Class Structure
 
@@ -54,7 +55,8 @@ import Foundation
 
  ## Implementation Notes
 
- - The class follows a simple order of operations: multiplication and division first, followed by addition and subtraction.
+ - The class follows a simple order of operations: multiplication and division first, followed by addition
+ and subtraction.
  - Calculation errors are handled and returned as a string "Error."
 
  */

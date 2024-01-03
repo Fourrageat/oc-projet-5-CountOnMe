@@ -14,7 +14,8 @@ import UIKit
  ## Overview
 
  The `ViewController` is a Swift class responsible for managing the user interface and handling user interactions
- for the CountOneMe calculator app. It utilizes the Model-View-Controller (MVC) architecture to separate concerns and maintain a clean code structure.
+ for the CountOneMe calculator app. It utilizes the Model-View-Controller (MVC) architecture to separate concerns and
+ maintain a clean code structure.
 
  ## Class Structure
 
@@ -30,7 +31,8 @@ import UIKit
 
  ### Computed Variables
 
- - `elements: [String]`: Splits the content of the `textView` into an array of strings, facilitating expression analysis.
+ - `elements: [String]`: Splits the content of the `textView` into an array of strings, facilitating
+ expression analysis.
 
  #### Error Check Computed Variables
 
@@ -51,17 +53,20 @@ import UIKit
 
  ### Operator Button Action
 
- - `tappedOperatorButton(_ sender: UIButton)`: Adds the tapped operator to the `textView` using the `addToTextView` method.
+ - `tappedOperatorButton(_ sender: UIButton)`: Adds the tapped operator to the `textView`
+ using the `addToTextView` method.
 
  ### Equal Button Action
 
- - `tappedEqualButton(_ sender: UIButton)`: Initiates the calculation process, displaying the result or showing an error alert based on expression validity.
+ - `tappedEqualButton(_ sender: UIButton)`: Initiates the calculation process, displaying the
+ result or showing an error alert based on expression validity.
 
  ## Private Methods
 
  - `showAlert(title: String, message: String)`: Displays an alert with the specified title and message.
  - `showAlertOperators()`: Shows an alert indicating that an operator is already present.
- - `addToTextView(currentOperator: String)`: Appends the given operator to the `textView` if allowed; otherwise, displays an alert.
+ - `addToTextView(currentOperator: String)`: Appends the given operator to the `textView`
+ if allowed; otherwise, displays an alert.
 
  ## Implementation Notes
 
@@ -74,7 +79,8 @@ import UIKit
 
  ## Overview
 
- The `Calculator` class is responsible for performing arithmetic calculations based on user input in the CountOneMe calculator app.
+ The `Calculator` class is responsible for performing arithmetic calculations based on user input in the
+ CountOneMe calculator app.
 
  ## Class Structure
 
@@ -115,26 +121,27 @@ import UIKit
 
  ## Implementation Notes
 
- - The class follows a simple order of operations: multiplication and division first, followed by addition and subtraction.
+ - The class follows a simple order of operations: multiplication and division first, followed by addition
+ and subtraction.
  - Calculation errors are handled and returned as a string "Error."
 
  */
 final class ViewController: UIViewController {
-    
+
     // MARK: - Outlets
-    
+
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
-    
+
     // MARK: - Computed Variables
-    
+
     /// Splits the content of the `textView` into an array of strings, facilitating expression analysis.
     private var elements: [String] {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
 
     // MARK: - Error Check Computed Variables
-    
+
     /// Checks if the current expression is valid.
     private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
@@ -156,12 +163,12 @@ final class ViewController: UIViewController {
     }
 
     // MARK: - Private Properties
-    
+
     /// An instance of the `Calculator` class for performing calculations.
     private let calculator = Calculator()
 
     // MARK: - View Actions
-    
+
     /// Handles the tap on number buttons, appending the pressed number to the `textView`.
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
@@ -182,7 +189,8 @@ final class ViewController: UIViewController {
         addToTextView(currentOperator: " \(operatorText) ")
     }
 
-    /// Handles the tap on the equal button, initiating the calculation process and displaying the result or an error alert.
+    /// Handles the tap on the equal button, initiating the calculation process and displaying the result
+    /// or an error alert.
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard expressionIsCorrect else {
             // Handle incorrect expression
@@ -208,7 +216,7 @@ final class ViewController: UIViewController {
 // MARK: - Private Extension
 
 private extension ViewController {
-    
+
     /// Displays an alert with the specified title and message.
     ///
     /// - Parameters:
