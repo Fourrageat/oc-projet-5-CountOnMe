@@ -19,7 +19,6 @@ import Foundation
  ## Class Structure
 
  - **Class Name:** `Calculator`
- - **Inherits from:** `NSObject`
 
  ## Properties
 
