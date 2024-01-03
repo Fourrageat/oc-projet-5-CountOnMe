@@ -112,7 +112,7 @@ final class Calculator {
                 if let left = Int(operations[index - 1]),
                    let right = Int(operations[index + 1]) {
                     // Perform the calculation
-                    let result = performCalculation(left: left, usedOperator: operations[index], right: right)
+                    let result = Self.performCalculation(left: left, usedOperator: operations[index], right: right)
 
                     // Update the result in the operations array
                     operations[index - 1] = result
@@ -138,7 +138,7 @@ final class Calculator {
     ///   - usedOperator: The operator to be applied.
     ///   - right: The right operand.
     /// - Returns: The result of the calculation or an error message.
-    private func performCalculation(left: Int, usedOperator: String, right: Int) -> String {
+    static func performCalculation(left: Int, usedOperator: String, right: Int) -> String {
         switch usedOperator {
         case "+": return "\(left + right)"
         case "-": return "\(left - right)"

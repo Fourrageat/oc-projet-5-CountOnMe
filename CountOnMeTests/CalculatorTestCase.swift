@@ -39,11 +39,13 @@ final class CalculatorTestCase: XCTestCase {
         assertion(givenExpression: ["3", "x", "2", "+", "6", "/", "3"], expected: "8")
     }
 
-    func testUnknownOperator() {
-        assertion(givenExpression: ["3", "$", "2"], expected: "Error")
-    }
-
     func testDivisionByZero() {
         assertion(givenExpression: ["4", "/", "0"], expected: "Error")
+    }
+
+    func testUnknownOperator() {
+        let received = Calculator.performCalculation(left: 5, usedOperator: "$", right: 4)
+
+        XCTAssertEqual(received, "Error")
     }
 }
