@@ -120,33 +120,49 @@ import UIKit
 
  */
 final class ViewController: UIViewController {
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
-
+    
+    // MARK: - Computed Variables
+    
+    /// Splits the content of the `textView` into an array of strings, facilitating expression analysis.
     private var elements: [String] {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
 
-    // Error check computed variables
+    // MARK: - Error Check Computed Variables
+    
+    /// Checks if the current expression is valid.
     private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
     }
 
+    /// Checks if the expression has enough elements for calculation.
     private var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
 
+    /// Determines if an operator can be added to the expression.
     private var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
     }
 
+    /// Checks if the expression contains a result.
     private var expressionHaveResult: Bool {
         return textView.text.firstIndex(of: "=") != nil
     }
 
+    // MARK: - Private Properties
+    
+    /// An instance of the `Calculator` class for performing calculations.
     private let calculator = Calculator()
 
-    // View actions
+    // MARK: - View Actions
+    
+    /// Handles the tap on number buttons, appending the pressed number to the `textView`.
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
@@ -157,6 +173,7 @@ final class ViewController: UIViewController {
         textView.text.append(numberText)
     }
 
+    /// Handles the tap on operator buttons, adding the pressed operator to the `textView`.
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
         guard let operatorText = sender.title(for: .normal) else {
             return
@@ -165,6 +182,7 @@ final class ViewController: UIViewController {
         addToTextView(currentOperator: " \(operatorText) ")
     }
 
+    /// Handles the tap on the equal button, initiating the calculation process and displaying the result or an error alert.
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard expressionIsCorrect else {
             // Handle incorrect expression
@@ -187,17 +205,29 @@ final class ViewController: UIViewController {
     }
 }
 
+// MARK: - Private Extension
+
 private extension ViewController {
+    
+    /// Displays an alert with the specified title and message.
+    ///
+    /// - Parameters:
+    ///   - title: The title of the alert.
+    ///   - message: The message to be displayed in the alert.
     private func showAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
 
+    /// Shows an alert indicating that an operator is already present.
     private func showAlertOperators() {
         showAlert(title: "Zéro!", message: "Un operateur est déja mis !")
     }
 
+    /// Appends the given operator to the `textView` if allowed; otherwise, displays an alert.
+    ///
+    /// - Parameter currentOperator: The operator to be added to the `textView`.
     private func addToTextView(currentOperator: String) {
         if canAddOperator {
             textView.text.append(currentOperator)
