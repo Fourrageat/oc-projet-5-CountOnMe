@@ -13,7 +13,8 @@ import UIKit
 
  ## Overview
 
- The `ViewController` is a Swift class responsible for managing the user interface and handling user interactions for the CountOneMe calculator app. It utilizes the Model-View-Controller (MVC) architecture to separate concerns and maintain a clean code structure.
+ The `ViewController` is a Swift class responsible for managing the user interface and handling user interactions
+ for the CountOneMe calculator app. It utilizes the Model-View-Controller (MVC) architecture to separate concerns and maintain a clean code structure.
 
  ## Class Structure
 
