@@ -11,56 +11,39 @@ import XCTest
 
 final class CalculatorTestCase: XCTestCase {
 
-    var calculator: Calculator!
+    private func assertion(givenExpression: [String], expected: String) {
+        let calculator = Calculator()
 
-    override func setUp() {
-        super.setUp()
+        let received = calculator.calculateResult(from: givenExpression)
 
-        calculator = Calculator()
+        XCTAssertEqual(received, expected)
     }
 
     func testAddition() {
-        let givenExpression = ["5", "+", "1"]
-        let expected = "6"
-
-        let received = calculator.calculateResult(from: givenExpression)
-
-        XCTAssertEqual(received, expected)
+        assertion(givenExpression: ["5", "+", "1"], expected: "6")
     }
 
     func testSoustraction() {
-        let givenExpression = ["5", "-", "1"]
-        let expected = "4"
-
-        let received = calculator.calculateResult(from: givenExpression)
-
-        XCTAssertEqual(received, expected)
+        assertion(givenExpression: ["5", "-", "1"], expected: "4")
     }
 
     func testMultiplication() {
-        let givenExpression = ["5", "x", "2"]
-        let expected = "10"
-
-        let received = calculator.calculateResult(from: givenExpression)
-
-        XCTAssertEqual(received, expected)
+        assertion(givenExpression: ["5", "x", "2"], expected: "10")
     }
 
     func testDivision() {
-        let givenExpression = ["10", "/", "2"]
-        let expected = "5"
-
-        let received = calculator.calculateResult(from: givenExpression)
-
-        XCTAssertEqual(received, expected)
+        assertion(givenExpression: ["10", "/", "2"], expected: "5")
     }
 
     func testOperatorPriority() {
-        let givenExpression = ["3", "x", "2", "+", "6", "/", "3"]
-        let expected = "8"
+        assertion(givenExpression: ["3", "x", "2", "+", "6", "/", "3"], expected: "8")
+    }
 
-        let received = calculator.calculateResult(from: givenExpression)
+    func testUnknownOperator() {
+        assertion(givenExpression: ["3", "$", "2"], expected: "Error")
+    }
 
-        XCTAssertEqual(received, expected)
+    func testDivisionByZero() {
+        assertion(givenExpression: ["4", "/", "0"], expected: "Error")
     }
 }
