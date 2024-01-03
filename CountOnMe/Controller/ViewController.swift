@@ -117,10 +117,6 @@ import UIKit
  - The class follows a simple order of operations: multiplication and division first, followed by addition and subtraction.
  - Calculation errors are handled and returned as a string "Error."
 
- ---
-
- *Note: This documentation provides an overview of the class structure, properties, methods, and their functionalities. Additional details or specifics may be required based on the future evolution of the code.*
-
  */
 final class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
