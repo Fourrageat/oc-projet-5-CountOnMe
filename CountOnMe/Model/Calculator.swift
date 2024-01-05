@@ -40,6 +40,8 @@ import Foundation
  #### `handleOperations(of operators: [String], in operations: inout [String])`
 
  Handles operations based on the given priority and modifies the array of operations in place.
+ 
+ ### Static Methods
 
  #### `performCalculation(left: Int, usedOperator: String, right: Int) -> String`
 
@@ -130,6 +132,8 @@ final class Calculator {
             index += 1
         }
     }
+
+    // MARK: - Static Methods
 
     /// Performs the arithmetic calculation based on the left operand, operator, and right operand.
     ///
