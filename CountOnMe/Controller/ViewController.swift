@@ -227,7 +227,7 @@ final class ViewController: UIViewController {
 // MARK: - Private Extension
 
 private extension ViewController {
-    
+
     /// Replace screen string by an empty string
     private func clearScreen() {
         textView.text = ""
