@@ -211,11 +211,27 @@ final class ViewController: UIViewController {
             showAlert(title: "Erreur de calcul", message: "Une erreur est survenue lors du calcul.")
         }
     }
+
+    /// Handles the tap on the reset button, deleting current string on the screen
+    @IBAction func tappedResetButton(_ sender: UIButton) {
+        clearScreen()
+    }
+
+    /// Called affter the device, screen loaded
+    override func viewDidLoad() {
+        clearScreen()
+        textView.isScrollEnabled = true
+    }
 }
 
 // MARK: - Private Extension
 
 private extension ViewController {
+    
+    /// Replace screen string by an empty string
+    private func clearScreen() {
+        textView.text = ""
+    }
 
     /// Displays an alert with the specified title and message.
     ///
